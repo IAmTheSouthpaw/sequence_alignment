@@ -30,31 +30,31 @@ public:
 };
 
 int DivCon::opt(int str1_index, int str2_index) {
-	cout << '\t' << ((str1_index != 0) ? str1.substr(0, str1_index) : "") << '[' << str1[str1_index] << ']' << ((str1_index != str1_len) ? str1.substr(str1_index + 1) : "") << '\t' << str1_index << endl;
-	cout << '\t' << ((str2_index != 0) ? str2.substr(0, str2_index) : "") << '[' << str2[str2_index] << ']' << ((str2_index != str2_len) ? str2.substr(str2_index + 1) : "") << '\t' << str2_index << endl;
+	// cout << '\t' << ((str1_index != 0) ? str1.substr(0, str1_index) : "") << '[' << str1[str1_index] << ']' << ((str1_index != str1_len) ? str1.substr(str1_index + 1) : "") << '\t' << str1_index << endl;
+	// cout << '\t' << ((str2_index != 0) ? str2.substr(0, str2_index) : "") << '[' << str2[str2_index] << ']' << ((str2_index != str2_len) ? str2.substr(str2_index + 1) : "") << '\t' << str2_index << endl;
 
 	int cost = 0;
 
 	if (str1_index == str1_len)
-		cost = 2 * (str2_len - str2_index);
-		// return 2 * (str2_len - str2_index);
+		// cost = 2 * (str2_len - str2_index);
+		return 2 * (str2_len - str2_index);
 	else if (str2_index == str2_len)
-		cost = 2 * (str1_len - str1_index);
-		// return 2 * (str1_len - str1_index);
+		// cost = 2 * (str1_len - str1_index);
+		return 2 * (str1_len - str1_index);
 
 	else {
 		int penalty = 0;
 		if (str1[str1_index] != str2[str2_index])
 			penalty = 1;
 
-		// return min({opt(str1_index + 1, str2_index + 1) + penalty,
-		cost = min({opt(str1_index + 1, str2_index + 1) + penalty,
+		return min({opt(str1_index + 1, str2_index + 1) + penalty,
+		// cost = min({opt(str1_index + 1, str2_index + 1) + penalty,
 					opt(str1_index + 1, str2_index) + 2,
 					opt(str1_index, str2_index + 1) + 2});
 	}
 
-	cout << "\t\t\tCost:" << cost << endl;
-	return cost;
+	// cout << "\t\t\tCost:" << cost << endl;
+	// return cost;
 }
 
 
