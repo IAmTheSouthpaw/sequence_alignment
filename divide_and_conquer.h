@@ -5,8 +5,6 @@ using namespace std;
 /* Divide and Conquer */
 class DivCon {
 private:
-	string str1;	// x
-	string str2;	// y
 	int str1_len;	// m
 	int str2_len;	// n
 	// int str1_index; // i
@@ -15,9 +13,12 @@ private:
 	int opt(int str1_index, int str2_index);
 
 public:
+	string str1;	// x
+	string str2;	// y
 	unsigned long long int basic_ops;
 	int opt_cost;
 
+	DivCon() {}
 	DivCon(string _str1, string _str2) 
 		: str1(_str1), str2(_str2), str1_len(_str1.length()), str2_len(_str2.length()), basic_ops(0) {}
 	~DivCon() {}
@@ -40,12 +41,12 @@ int DivCon::opt(int str1_index, int str2_index) {
 		if (str1[str1_index] != str2[str2_index])
 			penalty = 1;
 
-		/* Would basic_ops += 2 make more sense here? */
 		return min({opt(str1_index + 1, str2_index + 1) + penalty,
 					opt(str1_index + 1, str2_index) + 2,
 					opt(str1_index, str2_index + 1) + 2});
 	}
 }
+
 
 
 

@@ -1,13 +1,11 @@
 #pragma once
-#include <vector>
 
 using namespace std;
 
 /* Dynamic Programming */
 class DynPro {
 private:
-	string str1;	// x
-	string str2;	// y
+	
 	int str1_len;	// m
 	int str2_len;	// n
 	// int str1_index; // i
@@ -17,19 +15,19 @@ private:
 	void build_matrix();
 
 public:
+	string str1;	// x
+	string str2;	// y
 	unsigned long long int basic_ops = 0;
 	int opt_cost = 0;
 
+	DynPro() {}
 	DynPro(string _str1, string _str2) 
 		: str1(_str1), str2(_str2), str1_len(_str1.length()), str2_len(_str2.length()) {
 			opt_matrix.resize(str1_len + 1, vector<int>(str2_len + 1, 0));
 			for (auto row : opt_matrix)
 				row.resize(str2_len + 1, 0);
 		}
-	~DynPro() {
-		// for (auto col : opt_matrix)
-		// 	delete col;
-	}
+	~DynPro() {}
 
 	void run() {
 		build_matrix();
@@ -47,13 +45,13 @@ public:
 void DynPro::build_matrix() {
 
 	/* Populate bottom row */
-	for (int i = opt_matrix[0].size() - 1; i >= 0; i--) {
+	for (int i = opt_matrix[0].size() - 2; i >= 0; i--) {
 		basic_ops++;
 		opt_matrix[opt_matrix.size() - 1][i] = 2 * (opt_matrix[0].size() - 1 - i);
 	}
 
 	/* Populate right column */
-	for (int j = opt_matrix.size() - 1; j >= 0; j--) {
+	for (int j = opt_matrix.size() - 2; j >= 0; j--) {
 		basic_ops++;
 		opt_matrix[j][opt_matrix[0].size() - 1] = 2 * (opt_matrix.size() - 1 - j);
 	}
